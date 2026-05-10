@@ -1,0 +1,231 @@
+/* ── Auth Card ─────────────────────────────────── */
+.auth-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  padding: 36px 36px 32px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 8px 32px rgba(0, 0, 0, 0.06);
+  animation: cardIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: scale(0.98) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Header */
+.card-header {
+  margin-bottom: 28px;
+}
+
+.card-eyebrow {
+  display: none; /* removed per spec */
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: #111111;
+  line-height: 1.2;
+}
+
+.card-subtitle {
+  display: none; /* removed per spec */
+}
+
+/* Fields */
+.field {
+  margin-bottom: 16px;
+}
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 7px;
+  letter-spacing: 0;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 13px;
+  color: #9ca3af;
+  display: flex;
+  pointer-events: none;
+  transition: color 0.18s;
+}
+
+.auth-input {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 11px 13px 11px 38px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: #111111;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.auth-input::placeholder {
+  color: #c0c4cc;
+  font-weight: 400;
+}
+
+.auth-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-wrap:focus-within .input-icon {
+  color: #3b82f6;
+}
+
+/* Divider */
+.card-divider {
+  height: 1px;
+  background: #f0f0f0;
+  margin: 22px 0;
+}
+
+/* Primary Button */
+.btn-primary {
+  width: 100%;
+  padding: 12px 20px;
+  background: #111111;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.btn-primary:hover {
+  background: #222222;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Ghost Button */
+.btn-ghost {
+  width: 100%;
+  padding: 11px 20px;
+  background: transparent;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+}
+
+.btn-ghost:hover {
+  border-color: #3b82f6;
+  color: #2563eb;
+  background: #f0f7ff;
+}
+
+/* Spinner */
+.btn-spinner {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Toast */
+.auth-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  margin-bottom: 18px;
+  animation: toastIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.auth-toast.success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+}
+
+.auth-toast.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+/* Switch text */
+.switch-text {
+  text-align: center;
+  font-size: 13.5px;
+  color: #9ca3af;
+  margin-top: 20px;
+}
+
+.switch-link {
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 500;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.switch-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

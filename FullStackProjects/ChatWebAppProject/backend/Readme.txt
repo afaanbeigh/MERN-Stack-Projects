@@ -1,0 +1,1 @@
+To run the backend, first install express, mongoose, dotenv, cors, socket.io by writing command "npm install express mongoose dotenv cors socket.io" and also make sure env file has dot (.) at the beginning. Now run backend by writing command "npm start".

@@ -1,0 +1,1 @@
+Run command "npm install" first, then run frontend by writing command "npm start"
