@@ -1,0 +1,174 @@
+.services {
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+.heroSection {
+  height: 50vh;
+  background: url('https://images.pexels.com/photos/28271971/pexels-photo-28271971.jpeg?_gl=1*8bp2lp*_ga*MzU5NTI1MjM1LjE3NzAyOTAzNTk.*_ga_8JE65Q40S6*czE3NzAyOTk2MTUkbzIkZzEkdDE3NzAzMDAwNDgkajE4JGwwJGgw');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.heroContent h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.heroContent p {
+  font-size: 1.5rem;
+  opacity: 0.95;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.coreServicesSection,
+.activitiesSection {
+  padding: 100px 0;
+}
+
+.coreServicesSection {
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+}
+
+.activitiesSection {
+  background: white;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionHeader h2 {
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  font-weight: 800;
+}
+
+.sectionHeader p {
+  font-size: 1.125rem;
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.ctaSection {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaSection::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.ctaSection::after {
+  content: '';
+  position: absolute;
+  bottom: -50%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.ctaContent {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.ctaContent h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.ctaContent p {
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+}
+
+@media (max-width: 968px) {
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroContent p {
+    font-size: 1.2rem;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+
+  .ctaContent h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    height: 40vh;
+    background-attachment: scroll;
+  }
+
+  .coreServicesSection,
+  .activitiesSection,
+  .ctaSection {
+    padding: 60px 0;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .ctaContent p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContent h1 {
+    font-size: 2rem;
+  }
+
+  .heroContent p {
+    font-size: 1rem;
+  }
+}

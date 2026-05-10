@@ -1,0 +1,140 @@
+.page-wrap {
+  min-height: 100vh;
+  padding: 40px 24px;
+  background: linear-gradient(135deg, #e9eef5, #d6dde8);
+}
+
+.contact-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Heading */
+
+.contact-heading {
+  font-family: "Playfair Display", serif;
+  font-size: 64px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+/* Card */
+
+.contact-card {
+  padding: 38px 44px;
+  border-radius: 26px;
+}
+
+/* Glass base (if not global already) */
+
+.glass-card {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.6);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+/* Text */
+
+.contact-info h3 {
+  font-family: "Merriweather", sans-serif;
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+
+.contact-info p {
+  font-family: "Merriweather", sans-serif;
+  color: #4e4e4e;
+  text-align: justify;
+}
+
+/* Rows */
+
+.contact-lines {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 650px;
+}
+
+.contact-row a {
+  width: fit-content;
+}
+
+/* Stylish address/value font */
+
+.contact-row span {
+  font-family: "Merriweather", sans-serif;
+  font-size: 16px;
+  color: #4e4e4e;
+  line-height: 1.6;
+}
+
+/* Labels */
+
+.label {
+  font-family: "Merriweather", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #222;
+}
+
+/* Links */
+
+.contact-link {
+  font-family: "Merriweather", sans-serif;
+  text-decoration: none;
+  color: blue;
+  display: inline;
+  padding: 0;
+  transition: color .2s ease, font-weight .2s ease;
+}
+
+.contact-link:hover {
+  font-weight: bold;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+
+  .contact-heading {
+    font-size: 52px;
+  }
+
+  .contact-card {
+    padding: 26px 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-row span {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .contact-heading {
+    font-size: 42px;
+  }
+
+  .contact-info h3 {
+    font-size: 20px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+}

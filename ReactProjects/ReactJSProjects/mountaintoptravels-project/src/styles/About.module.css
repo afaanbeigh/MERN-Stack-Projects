@@ -1,0 +1,267 @@
+.about {
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+.heroSection {
+  height: 50vh;
+  background: url('https://w0.peakpx.com/wallpaper/474/65/HD-wallpaper-beautiful-sunset-sea-sky-scenery-landscape-nature-landscape-sunset-sea-sky-scenery.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.heroContent h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.heroContent p {
+  font-size: 1.5rem;
+  opacity: 0.95;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.storySection {
+  padding: 100px 0;
+  background: white;
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.storyContent h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #1f2937;
+  font-weight: 800;
+}
+
+.storyContent p {
+  color: #6b7280;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  text-align: justify;
+}
+
+.storyImage {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.storyImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.storyImage:hover img {
+  transform: scale(1.05);
+}
+
+.statsSection {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.statCard {
+  text-align: center;
+  color: white;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.statIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.statCard h3 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.statCard p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.valuesSection {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+}
+
+.valuesTitle {
+  text-align: center;
+  font-size: 2.75rem;
+  margin-bottom: 60px;
+  color: #1f2937;
+  font-weight: 800;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.valueCard {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  border: 2px solid transparent;
+}
+
+.valueCard:hover {
+  border-color: #667eea;
+  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+}
+
+.valueCard h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #667eea;
+  font-weight: 700;
+}
+
+.valueCard p {
+  color: #6b7280;
+  line-height: 1.8;
+  font-size: 1rem;
+  text-align: justify;
+}
+
+.certificationSection {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  text-align: center;
+}
+
+.certificationContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  color: white;
+}
+
+.certificationContent h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+}
+
+.certificationContent p {
+  font-size: 1.25rem;
+  line-height: 1.9;
+  opacity: 0.9;
+  text-align: justify;
+}
+
+@media (max-width: 968px) {
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroContent p {
+    font-size: 1.2rem;
+  }
+
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .storyContent h2 {
+    font-size: 2rem;
+  }
+
+  .valuesTitle {
+    font-size: 2rem;
+  }
+
+  .certificationContent h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    height: 40vh;
+    background-attachment: scroll;
+  }
+
+  .storySection,
+  .valuesSection,
+  .certificationSection {
+    padding: 60px 0;
+  }
+
+  .statsSection {
+    padding: 60px 0;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContent h1 {
+    font-size: 2rem;
+  }
+
+  .heroContent p {
+    font-size: 1rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificationContent p {
+    font-size: 1rem;
+  }
+}

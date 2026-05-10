@@ -1,0 +1,1 @@
+Run command "npm install" first, then run web app by writing command "npm start".

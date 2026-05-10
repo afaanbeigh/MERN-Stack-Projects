@@ -1,0 +1,238 @@
+import { Dimensions, StyleSheet } from 'react-native';
+
+const { width } = Dimensions.get('window');
+const isTablet = width >= 768;
+const horizontalPadding = isTablet ? Math.min(width * 0.16, 160) : 18;
+
+const colors = {
+  background: '#EEF4FF',
+  surface: '#FFFFFF',
+  surfaceSoft: '#F8FAFC',
+  text: '#0F172A',
+  muted: '#64748B',
+  border: '#E2E8F0',
+  primary: '#2563EB',
+  primaryDark: '#1D4ED8',
+  primarySoft: '#DBEAFE',
+  shadow: '#0F172A',
+};
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  screen: {
+    paddingHorizontal: horizontalPadding,
+    paddingTop: isTablet ? 44 : 26,
+    paddingBottom: 44,
+    alignSelf: 'center',
+    width: '100%',
+    maxWidth: 760,
+  },
+  hero: {
+    alignItems: 'center',
+    marginBottom: 22,
+  },
+  title: {
+    color: colors.text,
+    fontSize: isTablet ? 44 : 36,
+    fontWeight: '900',
+    letterSpacing: 0,
+    textAlign: 'center',
+  },
+  categoryScroller: {
+    marginBottom: 22,
+    width: '100%',
+  },
+  categoryScroll: {
+    alignItems: 'center',
+    flexGrow: 1,
+    gap: 10,
+    justifyContent: 'center',
+  },
+  categoryButton: {
+    alignItems: 'center',
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderRadius: 8,
+    borderWidth: 1,
+    justifyContent: 'center',
+    minHeight: 46,
+    minWidth: isTablet ? 130 : 94,
+    paddingHorizontal: 17,
+    paddingVertical: 11,
+    shadowColor: colors.shadow,
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    elevation: 2,
+  },
+  categoryButtonActive: {
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
+  },
+  categoryText: {
+    color: colors.muted,
+    fontSize: 14,
+    fontWeight: '800',
+  },
+  categoryTextActive: {
+    color: colors.surface,
+  },
+  converterWrap: {
+    gap: 16,
+  },
+  card: {
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderRadius: 8,
+    borderWidth: 1,
+    padding: isTablet ? 28 : 20,
+    shadowColor: colors.shadow,
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 14 },
+    shadowRadius: 28,
+    elevation: 5,
+  },
+  cardHeader: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 22,
+    gap: 16,
+  },
+  cardTitle: {
+    color: colors.text,
+    flex: 1,
+    fontSize: isTablet ? 25 : 22,
+    fontWeight: '900',
+    letterSpacing: 0,
+  },
+  accentDot: {
+    borderRadius: 8,
+    height: 18,
+    width: 18,
+  },
+  fieldLabel: {
+    color: colors.muted,
+    fontSize: 12,
+    fontWeight: '900',
+    letterSpacing: 0.7,
+    marginBottom: 9,
+    marginTop: 4,
+    textTransform: 'uppercase',
+  },
+  input: {
+    backgroundColor: colors.surfaceSoft,
+    borderColor: '#CBD5E1',
+    borderRadius: 8,
+    borderWidth: 1,
+    color: colors.text,
+    fontSize: isTablet ? 28 : 24,
+    fontWeight: '900',
+    marginBottom: 20,
+    paddingHorizontal: 16,
+    paddingVertical: isTablet ? 16 : 13,
+  },
+  unitScrollContent: {
+    alignItems: 'center',
+    gap: 8,
+    paddingBottom: 5,
+    paddingRight: 4,
+  },
+  unitChip: {
+    alignItems: 'center',
+    backgroundColor: colors.surfaceSoft,
+    borderColor: colors.border,
+    borderRadius: 8,
+    borderWidth: 1,
+    minHeight: 38,
+    justifyContent: 'center',
+    paddingHorizontal: 13,
+    paddingVertical: 9,
+  },
+  unitChipActive: {
+    backgroundColor: colors.primarySoft,
+    borderColor: colors.primary,
+  },
+  unitChipText: {
+    color: colors.muted,
+    fontSize: 13,
+    fontWeight: '800',
+  },
+  unitChipTextActive: {
+    color: colors.primaryDark,
+  },
+  swapRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 18,
+    marginTop: 17,
+  },
+  divider: {
+    backgroundColor: colors.border,
+    flex: 1,
+    height: 1,
+  },
+  swapButton: {
+    backgroundColor: colors.text,
+    borderRadius: 8,
+    minHeight: 40,
+    justifyContent: 'center',
+    paddingHorizontal: 18,
+  },
+  swapButtonText: {
+    color: colors.surface,
+    fontSize: 13,
+    fontWeight: '900',
+  },
+  resultPanel: {
+    backgroundColor: '#F0F9FF',
+    borderColor: '#BAE6FD',
+    borderRadius: 8,
+    borderWidth: 1,
+    marginTop: 20,
+    padding: isTablet ? 18 : 16,
+  },
+  resultLabel: {
+    color: colors.muted,
+    fontSize: 12,
+    fontWeight: '900',
+    letterSpacing: 0.8,
+    textTransform: 'uppercase',
+  },
+  resultValue: {
+    color: colors.text,
+    fontSize: isTablet ? 42 : 34,
+    fontWeight: '900',
+    letterSpacing: 0,
+    marginTop: 5,
+    width: '100%',
+  },
+  resultCaption: {
+    color: colors.muted,
+    fontSize: 14,
+    lineHeight: 21,
+    marginTop: 5,
+  },
+  primaryButton: {
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    borderRadius: 8,
+    justifyContent: 'center',
+    marginTop: 18,
+    minHeight: 50,
+  },
+  primaryButtonDisabled: {
+    backgroundColor: colors.border,
+  },
+  primaryButtonText: {
+    color: colors.surface,
+    fontSize: 15,
+    fontWeight: '900',
+  },
+});
+
+export default styles;

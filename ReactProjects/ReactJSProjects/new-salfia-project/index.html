@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Salfia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="medicine.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* ========== GLOBAL RESET & BASE STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Georgia, serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+        h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+        h4 { font-size: clamp(1.1rem, 2.5vw, 1.25rem); }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            text-align-last: left;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            line-height: 1.6;
+            word-spacing: normal;
+            letter-spacing: normal;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem clamp(1rem, 3vw, 2rem);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: clamp(32px, 5vw, 40px);
+            height: clamp(32px, 5vw, 40px);
+            background: white;
+            color: #0066cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: clamp(1rem, 3vw, 2rem);
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* ========== HERO SECTION (NEW DESIGN) ========== */
+        .hero {
+            position: relative;
+            margin-top: 70px;
+            min-height: clamp(500px, 70vh, 600px);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .hero-bg-image.active {
+            opacity: 1;
+        }
+
+        .hero-bg-image.inactive {
+            opacity: 0.7;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0.5) 50%,
+                rgba(0, 0, 0, 0.6) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            min-height: clamp(500px, 70vh, 600px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 3vw, 2rem);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            color: white;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInIndicators 0.8s ease-out 0.2s forwards;
+        }
+
+        @keyframes fadeInIndicators {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        .indicator.active {
+            background: white;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            text-align-last: center;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            animation-fill-mode: backwards;
+        }
+
+        @keyframes fadeInUpDelayed {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 0.95;
+                transform: translateY(0);
+            }
+        }
+
+        /* Slide transition classes */
+        .slide-content-enter {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .slide-content-exit {
+            animation: fadeOut 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* ========== CONTAINER & SECTION STYLES ========== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+        }
+
+        section {
+            padding: clamp(3rem, 8vw, 5rem) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #0066cc;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #666;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .about-card {
+            background: white;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .about-card-icon {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .about-card h3 {
+            color: #0066cc;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        #contact {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .contact-card {
+            background: white;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .contact-icon {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: #0066cc;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        .contact-card a {
+            color: #0066cc;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: #004d99;
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+            color: white;
+            padding: clamp(2rem, 5vw, 3rem) 0 clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: clamp(2rem, 4vw, 3rem);
+            margin-bottom: clamp(2rem, 3vw, 2.5rem);
+        }
+
+        .footer-section h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+            text-align: left;
+            text-align-last: left;
+        }
+
+        .footer-nav {
+            list-style: none;
+        }
+
+        .footer-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-nav a {
+            color: white;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: clamp(1rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem) 0;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+                transition: left 0.3s ease;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 2rem 0;
+                gap: 0;
+            }
+
+            nav a {
+                display: block;
+                padding: 1rem 2rem;
+                width: 100%;
+                border-radius: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1rem, 4vw, 1.2rem);
+            }
+
+            .carousel-indicators {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 450px;
+            }
+
+            .hero-container {
+                min-height: 450px;
+            }
+
+            .indicator {
+                width: 10px;
+                height: 10px;
+            }
+
+            .indicator.active {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="header-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">💊</div>
+                <span>New Salfia</span>
+            </a>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#products" class="nav-link">Products</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="./Images/1herobackground.png" 
+                 alt="Warehouse" 
+                 class="hero-bg-image active" 
+                 id="heroImage0">
+            <img src="./Images/2herobackground.png" 
+                 alt="Medicines" 
+                 class="hero-bg-image inactive" 
+                 id="heroImage1"
+                 style="opacity: 0;">
+            <img src="./Images/3herobackground.png" 
+                 alt="Office" 
+                 class="hero-bg-image inactive" 
+                 id="heroImage2"
+                 style="opacity: 0;">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="hero-container">
+            <div class="hero-content" id="heroContent">
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <div class="indicator active" data-slide="0"></div>
+                    <div class="indicator" data-slide="1"></div>
+                    <div class="indicator" data-slide="2"></div>
+                </div>
+
+                <h1 class="hero-title" id="heroTitle">New Salfia — Trusted Wholesale Pharma Distributor</h1>
+                <p class="hero-subtitle" id="heroSubtitle">Your reliable partner for quality pharmaceutical products with nationwide distribution and certified excellence</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About New Salfia</h2>
+                <p>Delivering excellence in pharmaceutical distribution since 2023 with commitment to quality, reliability, and customer satisfaction.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-card-icon">🏢</div>
+                    <h3>Our Company</h3>
+                    <p>New Salfia is a trusted wholesale pharmaceutical distributor with 2+ years of experience, reliably supplying hospitals, clinics, and retail pharmacies nationwide.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">📦</div>
+                    <h3>Warehouse & Distribution</h3>
+                    <p>Our advanced warehouse facility covers 120 sq ft and includes climate-controlled storage to maintain product quality and support quick delivery.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">✅</div>
+                    <h3>Compliance Practices</h3>
+                    <p>We follow all rules, keep clear records, maintain proper cold storage, and check quality at every step.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">🔬</div>
+                    <h3>Quality Assurance</h3>
+                    <p>Every product undergoes rigorous quality checks. We source only from authorized manufacturers and maintain complete traceability for all pharmaceutical items.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRODUCT SECTION ========== -->
+    <section id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Products</h2>
+                <p>We offer a complete portfolio of pharmaceutical and healthcare products covering a wide range of therapeutic and medical needs. Our catalog is continuously expanding to serve hospitals, pharmacies, and healthcare providers with reliable, high-quality solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact New Salfia</h2>
+                <p>Get in touch with us for inquiries, orders, or partnership opportunities.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Phone</h3>
+                    <p>Main Office:</p>
+                    <a href="tel:+91 9906611613">+91 9906611613</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>General Inquiries:</p>
+                    <a href="mailto:newsalfia@gmail.com">newsalfia@gmail.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Address</h3>
+                    <p>New Salfia Pharmaceuticals</p>
+                    <p>Bohlochipora, Soura</p>
+                    <p>Srinagar, J&K - 190011</p>
+                    <p>India</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🕐</div>
+                    <h3>Business Hours</h3>
+                    <p>Monday - Saturday:</p>
+                    <p>9:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://wa.me/+919906611613" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
+                    💬 Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GOOGLE MAP SECTION ========== -->
+    <section id="map" style="padding: 0;">
+        <a href="https://www.google.com/maps/place/34%C2%B007'56.8%22N+74%C2%B047'58.4%22E/@34.132431,74.799563,17z/data=!3m1!4b1!4m4!3m3!8m2!3d34.132431!4d74.799563?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; height: 450px; position: relative; overflow: hidden; text-decoration: none;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d412.817886632399!2d74.79939384234102!3d34.13244516174748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1770577654162!5m2!1sen!2sin" 
+                width="100%" 
+                height="450" 
+                style="border:0; display: block; pointer-events: none;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0); cursor: pointer; z-index: 1;">
+                <div class="map-overlay-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 102, 204, 0.95); color: white; padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 3vw, 2.5rem); border-radius: 12px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(0.9rem, 2vw, 1.2rem); box-shadow: 0 8px 30px rgba(0,0,0,0.3); transition: all 0.3s ease; pointer-events: none; text-align: center;">
+                    📍 Click to View on Google Maps
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>New Salfia</h3>
+                <p>Your trusted wholesale pharmaceutical distributor since 2023.</p>
+                <p><strong>Drug License:</strong> WLF20B2024JK000438</p>
+                <p><strong>GST Number:</strong> 01GQTPM1813E1Z0</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-nav">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📞 +91 9906611613</p>
+                <p>📧 <a href="mailto:newsalfia@gmail.com">newsalfia@gmail.com</a></p>
+                <p>📍 Bohlochipora, Soura</p>
+                <p>Srinagar, J&K - 190011</p>
+            </div>
+            <div class="footer-section">
+                <h3>Business Hours</h3>
+                <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-left">
+                <p>&copy; <span id="year"></span> New Salfia Pharmaceuticals. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <p>Designed & Developed by Afaan Beigh</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        $(document).ready(function() {
+            
+            // ========== HERO CAROUSEL ========== 
+            const slides = [
+                {
+                    title: "New Salfia — Trusted Wholesale Pharma Distributor",
+                    subtitle: "Your reliable partner for quality pharmaceutical products with nationwide distribution and certified excellence"
+                },
+                {
+                    title: "Quality Healthcare Solutions for Medical Providers",
+                    subtitle: "Delivering comprehensive pharmaceutical supplies to hospitals, clinics, and pharmacies with dedication and professionalism"
+                },
+                {
+                    title: "Excellence in Pharmaceutical Distribution Since 2023",
+                    subtitle: "Committed to quality, reliability, and customer satisfaction in every product we deliver"
+                }
+            ];
+
+            let currentSlide = 0;
+            let isHovering = false;
+            let slideInterval;
+
+            function updateSlide(index) {
+                currentSlide = index;
+                
+                // Update background images
+                $('.hero-bg-image').each(function(i) {
+                    if (i === currentSlide) {
+                        $(this).css('opacity', '1').addClass('active').removeClass('inactive');
+                    } else {
+                        $(this).css('opacity', '0').addClass('inactive').removeClass('active');
+                    }
+                });
+
+                // Update indicators
+                $('.indicator').removeClass('active');
+                $(`.indicator[data-slide="${currentSlide}"]`).addClass('active');
+
+                // Update text content with animation
+                const $title = $('#heroTitle');
+                const $subtitle = $('#heroSubtitle');
+                
+                // Fade out
+                $title.css('opacity', '0');
+                $subtitle.css('opacity', '0');
+                
+                // Update content after brief delay
+                setTimeout(function() {
+                    $title.text(slides[currentSlide].title);
+                    $subtitle.text(slides[currentSlide].subtitle);
+                    
+                    // Fade in
+                    $title.css({
+                        'opacity': '1',
+                        'transform': 'translateY(0)'
+                    });
+                    $subtitle.css({
+                        'opacity': '0.95',
+                        'transform': 'translateY(0)'
+                    });
+                }, 200);
+            }
+
+            function startCarousel() {
+                slideInterval = setInterval(function() {
+                    if (!isHovering) {
+                        const nextSlide = (currentSlide + 1) % slides.length;
+                        updateSlide(nextSlide);
+                    }
+                }, 5000);
+            }
+
+            function stopCarousel() {
+                clearInterval(slideInterval);
+            }
+
+            // Indicator click handlers
+            $('.indicator').on('click', function() {
+                const slideIndex = parseInt($(this).attr('data-slide'));
+                updateSlide(slideIndex);
+                stopCarousel();
+                startCarousel();
+            });
+
+            // Hover pause functionality
+            $('#heroContent').on('mouseenter', function() {
+                isHovering = true;
+            });
+
+            $('#heroContent').on('mouseleave', function() {
+                isHovering = false;
+            });
+
+            // Start carousel
+            startCarousel();
+
+            // ========== MOBILE MENU TOGGLE ========== 
+            $('#mobileMenuToggle').on('click', function() {
+                $('#mainNav').toggleClass('active');
+            });
+
+            // Close menu when clicking a link
+            $('.nav-link').on('click', function() {
+                $('#mainNav').removeClass('active');
+            });
+
+            // ========== SMOOTH SCROLL ========== 
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                const target = $(this.getAttribute('href'));
+                if (target.length) {
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 80
+                    }, 800);
+                }
+            });
+
+            // ========== ACTIVE NAV HIGHLIGHT ========== 
+            $(window).on('scroll', function() {
+                let scrollPos = $(window).scrollTop() + 100;
+                
+                $('.nav-link').each(function() {
+                    let currLink = $(this);
+                    let refElement = $(currLink.attr('href'));
+                    
+                    if (refElement.length) {
+                        if (refElement.position().top <= scrollPos && 
+                            refElement.position().top + refElement.height() > scrollPos) {
+                            $('.nav-link').removeClass('active');
+                            currLink.addClass('active');
+                        }
+                    }
+                });
+            });
+
+            // ========== CURRENT YEAR ========== 
+            $('#year').text(new Date().getFullYear());
+        });
+    </script>
+</body>
+</html>

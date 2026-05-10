@@ -1,0 +1,64 @@
+.footer-wrap {
+  padding: 30px 20px 40px;
+  background: linear-gradient(135deg, #e9eef5, #d6dde8);
+}
+
+/* Glass container same as cards */
+.footer-glass {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 22px;
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+
+  padding: 18px 28px;
+}
+
+/* Layout */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Text */
+.footer-left,
+.footer-right {
+  font-family: "Merriweather", sans-serif;
+  font-size: 15px;
+  color: #4e4e4e;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 800px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-glass {
+    padding: 16px 18px;
+  }
+
+  .footer-left,
+  .footer-right {
+    font-size: 13px;
+  }
+}
