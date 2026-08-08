@@ -105,7 +105,7 @@ function Login({ onLoginSuccess, onSwitchToRegister }) {
       {onSwitchToRegister && (
         <p className="switch-text">
           Don't have an account?{' '}
-          <button className="switch-link" onClick={onSwitchToRegister}>Create one</button>
+          <button className="switch-link" onClick={onSwitchToRegister}>Create account</button>
         </p>
       )}
     </div>
